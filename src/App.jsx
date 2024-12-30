@@ -3,11 +3,13 @@ import Applayout from "./ui/Applayout";
 import Home from "./ui/Home";
 import Menu, { loader as menuLoader } from "./features/menu/Menu";
 import Cart from "./features/cart/Cart";
+import Error from "./ui/Error";
 // import Order from "./features/order/Order";
 // import CreateOrder from "./features/order/CreateOrder";
 const router = createBrowserRouter([
   {
     element: <Applayout />,
+    errorElement: <Error />,
     children: [
       {
         path: "/",
@@ -17,6 +19,7 @@ const router = createBrowserRouter([
         path: "/menu",
         element: <Menu />,
         loader: menuLoader,
+        errorElement: <Error />,
       },
       {
         path: "/cart",
