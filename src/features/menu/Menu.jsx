@@ -14,7 +14,6 @@ function Menu() {
 }
 
 export default Menu;
-
 export const loader = async () => {
   const data = await getMenu();
   return data;
