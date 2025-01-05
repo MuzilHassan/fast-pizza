@@ -42,34 +42,43 @@ function CreateOrder() {
   const navigation = useNavigation();
 
   return (
-    <div>
-      <h2>Ready to order? Lets go!</h2>
+    <div className="px-4 py-6">
+      <h2 className="mb-4 text-xl font-semibold">Ready to order? Lets go!</h2>
 
       <Form method="POST">
-        <div>
-          <label>First Name</label>
-          <input type="text" name="customer" required className="input" />
+        <div className="mb-5 flex flex-col gap-2 sm:flex-row sm:items-center">
+          <label className="sm:basis-40">First Name</label>
+          <input type="text" name="customer" required className="input grow" />
         </div>
 
-        <div>
-          <label>Phone number</label>
-          <div>
-            <input type="tel" name="phone" required className="input" />
+        <div className="mb-5 flex flex-col gap-2 sm:flex-row sm:items-center">
+          <label className="sm:basis-40">Phone number</label>
+          <div className="grow">
+            <input type="tel" name="phone" required className="input w-full" />
+            {errors?.phone && (
+              <p className="mt-2 rounded-full bg-red-300 px-2 py-2 text-sm text-red-700">
+                {errors?.phone}
+              </p>
+            )}
           </div>
-          {errors?.phone && <p>{errors?.phone}</p>}
         </div>
 
-        <div>
-          <label>Address</label>
-          <div>
-            <input type="text" name="address" required className="input" />
+        <div className="mb-5 flex flex-col gap-2 sm:flex-row sm:items-center">
+          <label className="sm:basis-40">Address</label>
+          <div className="grow">
+            <input
+              type="text"
+              name="address"
+              required
+              className="input w-full"
+            />
           </div>
         </div>
         <div>
           <input name="cart" hidden value={JSON.stringify(cart)} />
         </div>
 
-        <div>
+        <div className="flex items-center gap-4">
           <input
             type="checkbox"
             name="priority"
@@ -78,11 +87,13 @@ function CreateOrder() {
             // value={withPriority}
             // onChange={(e) => setWithPriority(e.target.checked)}
           />
-          <label htmlFor="priority">Want to yo give your order priority?</label>
+          <label htmlFor="priority" className="font-semibold">
+            Want to yo give your order priority?
+          </label>
         </div>
 
-        <div>
-          <Button disabled={navigation.state === "submitting"}>
+        <div className="mt-4">
+          <Button disabled={navigation.state === "submitting"} type={"primary"}>
             Order now
           </Button>
         </div>
