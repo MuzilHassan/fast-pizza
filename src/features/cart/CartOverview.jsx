@@ -1,11 +1,13 @@
+import { Link } from "react-router-dom";
+
 function CartOverview() {
   return (
-    <div className=" p-4 uppercase  bg-stone-800 text-stone-200 flex items-center justify-between">
-      <p className=" font-semibold space-x-4">
+    <div className="flex items-center justify-between bg-stone-800 p-4 uppercase text-stone-200">
+      <p className="space-x-4 font-semibold">
         <span>23 pizzas</span>
         <span>$23.45</span>
       </p>
-      <a href="#">Open cart &rarr;</a>
+      <Link to="/cart">Open cart &rarr;</Link>
     </div>
   );
 }
