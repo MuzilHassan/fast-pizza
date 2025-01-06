@@ -3,7 +3,7 @@ import Button from "../../ui/Button";
 import CartItem from "./CartItem";
 import { useDispatch, useSelector } from "react-redux";
 import { clearCart } from "./cartSlice";
-
+import EmptyCart from "./EmptyCart";
 const fakeCart = [
   {
     pizzaId: 12,
@@ -36,6 +36,8 @@ function Cart() {
   const handleClick = () => {
     dispatch(clearCart());
   };
+
+  if (!cart.length) return <EmptyCart />;
   return (
     <div className="px-4 py-2">
       <Link
