@@ -2,6 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Button from "../../ui/Button";
 import { formatCurrency } from "../../utils/helpers";
 import { addItem, deleteItem, getItemsQuantity } from "../cart/cartSlice";
+import UpdateItemButton from "./UpdateItemButton";
 function MenuItem({ pizza }) {
   const { name, unitPrice, ingredients, soldOut, imageUrl, id } = pizza;
   const dispatch = useDispatch();
@@ -13,7 +14,7 @@ function MenuItem({ pizza }) {
   const handleClick = () => {
     dispatch(addItem({ pizzaId: id, unitPrice, name, quantity: 1 }));
   };
-  console.log(isInCart);
+  console.log(isInCart, "pop");
   return (
     <li className="flex gap-4 py-2">
       <img
@@ -35,9 +36,12 @@ function MenuItem({ pizza }) {
             </p>
           )}
           {!soldOut && isInCart && (
-            <Button type={"small"} handleClick={handleDelete}>
-              Delete
-            </Button>
+            <div className="flex items-center gap-4 sm:gap-8">
+              <UpdateItemButton id={id} quantity={quantity} />
+              <Button type={"small"} handleClick={handleDelete}>
+                Delete
+              </Button>
+            </div>
           )}
           {!soldOut && !isInCart && (
             <Button type="small" handleClick={handleClick}>

@@ -7,7 +7,6 @@ function CartOverview() {
   const totalPrice = useSelector(getTotalPrice);
   const totalNumber = useSelector(getTotalQuantity);
 
-  console.log(totalNumber, ";p[");
   if (!totalNumber) return null;
   return (
     <div className="flex items-center justify-between bg-stone-800 p-4 uppercase text-stone-200">
