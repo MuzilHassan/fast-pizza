@@ -4,7 +4,8 @@ import { Form, redirect, useActionData, useNavigation } from "react-router-dom";
 import { createOrder } from "../../services/apiRestaurant";
 import Button from "../../ui/Button";
 import { useSelector } from "react-redux";
-
+import store from "../../store";
+import { clearCart } from "../cart/cartSlice";
 // https://uibakery.io/regex-library/phone-number
 const isValidPhone = (str) =>
   /^\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}$/.test(
@@ -37,7 +38,7 @@ const fakeCart = [
 
 function CreateOrder() {
   // const [withPriority, setWithPriority] = useState(false);
-  const cart = fakeCart;
+  const cart = useSelector((state) => state.cart.cart);
   let errors = useActionData();
   const userName = useSelector((state) => state.user.userName);
   const navigation = useNavigation();
@@ -123,8 +124,8 @@ export const Action = async ({ request }) => {
     errors.phone = "Please enter correct phone number";
 
   if (Object.keys(errors).length > 0) return errors;
+  store.dispatch(clearCart());
   const newOrder = await createOrder(order);
-  console.log(newOrder);
   return redirect(`/order/${newOrder.id}`);
 };
 

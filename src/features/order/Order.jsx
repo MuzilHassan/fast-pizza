@@ -23,7 +23,7 @@ function Order() {
     cart,
   } = order;
   const deliveryIn = calcMinutesLeft(estimatedDelivery);
-  console.log(cart);
+
   return (
     <div className="space-y-8 px-4 py-6">
       <div className="flex flex-wrap items-center justify-between gap-2">
@@ -53,7 +53,7 @@ function Order() {
       </div>
       <ul className="divide-y divide-slate-200 border-b border-t">
         {cart.map((item) => (
-          <OrderItem key={item.id} item={item} />
+          <OrderItem key={item.pizzaId} item={item} />
         ))}
       </ul>
       <div className="space-y-3 bg-stone-200 px-5 py-5">
