@@ -4,7 +4,7 @@ import Header from "./Header";
 import Loader from "./Loader";
 const Applayout = () => {
   const { state: isLoading } = useNavigation();
-  console.log(isLoading);
+
   return (
     <div className="grid h-screen grid-rows-[auto_1fr_auto] overflow-auto">
       {isLoading === "loading" && <Loader />}
