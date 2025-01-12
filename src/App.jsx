@@ -5,6 +5,7 @@ import Menu, { loader as menuLoader } from "./features/menu/Menu";
 import Cart from "./features/cart/Cart";
 import Error from "./ui/Error";
 import Order, { loader as orderLoader } from "./features/order/Order";
+import { action as priorityAction } from "./features/order/MakeOrderPriority";
 import CreateOrder, {
   Action as orderAction,
 } from "./features/order/CreateOrder";
@@ -37,6 +38,7 @@ const router = createBrowserRouter([
         element: <Order />,
         errorElement: <Error />,
         loader: orderLoader,
+        action: priorityAction,
       },
     ],
   },
